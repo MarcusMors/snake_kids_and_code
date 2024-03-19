@@ -42,8 +42,8 @@ font_style = pygame.font.Font(None, 50)
 score_font = pygame.font.Font(None, 35)
 
 def our_snake(snake_block, snake_List):
-    for x in snake_List:
-        pygame.draw.rect(window, (0, 255, 0), pygame.Rect(x[0], x[1], snake_block, snake_block))
+    for xy in snake_List:
+        pygame.draw.rect(window, (0, 255, 0), (xy[0], xy[1], snake_block, snake_block))
 
 def message(msg, color):
     mesg = font_style.render(msg, True, color)
@@ -121,17 +121,16 @@ def gameLoop():
         window.fill(color_negro)
 
         # pygame.draw.rect(window, color_rojo, pygame.Rect(foodx, foody, snake_block, snake_block))
-        pygame.draw.rect(window, color_rojo, (foodx, foody, snake_block, snake_block))
+        pygame.draw.rect(window, color_rojo, (foodx, foody, snake_block, ))
 
         snake_Head = [x1,y1]
         snake_List.append(snake_Head)
 
         if len(snake_List) > Length_of_snake:
-            # del snake_List[0]
             snake_List.pop(0)
 
-        for x in snake_List[:-1]:
-            if x == snake_Head:
+        for xy in snake_List[:-1]:
+            if xy == snake_Head:
                 mostrar_menu = True
 
         # alternative
